@@ -5,8 +5,8 @@ const pictures = document.querySelector('.pictures');
 const thumbnailListFragment = document.createDocumentFragment();
 const imgFiltersElement = document.querySelector('.img-filters');
 
-const renderThumbnails = (thumbnail) => {
-  thumbnail.forEach((element) => {
+const renderThumbnails = (thumbnails) => {
+  thumbnails.forEach((element) => {
     const thumbnailElement = thumbnailTemplate.cloneNode(true);
     thumbnailElement.querySelector('.picture__img').setAttribute('src', element.url);
     thumbnailElement.querySelector('.picture__img').setAttribute('alt', element.description);

@@ -127,22 +127,22 @@ const hideModalMessage = () => {
   errorElement.classList.add('hidden');
 };
 
-const closeModalMessageWithClickOnBody = (evt) => {
+const onBodyClick = (evt) => {
   evt.stopPropagation();
   if (evt.target.matches('.success') || evt.target.matches('.error')) {
     hideModalMessage();
-    document.removeEventListener('click', closeModalMessageWithClickOnBody);
+    document.removeEventListener('click', onBodyClick);
   }
 };
 
-const closeModalMessageWithClickOnButton = () => {
+const onCloseButtonClick = () => {
   hideModalMessage();
 };
 
-const closeModalMessageWithPressEsc = (evt) => {
+const onEscPress = (evt) => {
   if (isEscapeKey(evt)) {
     hideModalMessage();
-    document.removeEventListener('keydown', closeModalMessageWithPressEsc);
+    document.removeEventListener('keydown', onEscPress);
   }
 };
 
@@ -152,10 +152,10 @@ const onFormSubmit = (cb) => {
     const isValid = pristine.validate();
     if (isValid) {
       blockSubmitButton();
-      successButtonElement.addEventListener('click', closeModalMessageWithClickOnButton);
-      errorButtonElement.addEventListener('click', closeModalMessageWithClickOnButton);
-      document.addEventListener('keydown', closeModalMessageWithPressEsc);
-      document.addEventListener('click', closeModalMessageWithClickOnBody);
+      successButtonElement.addEventListener('click', onCloseButtonClick);
+      errorButtonElement.addEventListener('click', onCloseButtonClick);
+      document.addEventListener('keydown', onEscPress);
+      document.addEventListener('click', onBodyClick);
       await cb(new FormData(form));
       unblockSubmitButton();
     }

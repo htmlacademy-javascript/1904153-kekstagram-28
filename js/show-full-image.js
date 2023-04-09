@@ -67,7 +67,6 @@ const openFullImage = (item, data) => {
 function closeFullImage() {
   document.querySelector('.big-picture').classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
-  closeButton.removeEventListener('click', onClickButtonClose);
   document.removeEventListener('keydown', onDocumentKeydown);
   shownComments = 0;
   commentsLoader.removeEventListener('click', loadMoreComments);
